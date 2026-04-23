@@ -1,12 +1,13 @@
 services:
   - type: web
     name: stock-api
-    env: python
+    runtime: python
     buildCommand: "pip install -r requirements.txt"
     startCommand: "uvicorn app.main:app --host 0.0.0.0 --port 10000"
 
   - type: cron
     name: daily-job
+    runtime: python   # ⭐ THIS LINE WAS MISSING
     schedule: "0 8 * * *"
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python run_daily.py"
